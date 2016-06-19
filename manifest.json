@@ -22,7 +22,7 @@
 			"matches": ["https://*/*"],
 			"js": [
 				"jquery.min.js",
-				// "havvy/jquery-ui.js",
+				"havvy/selectize.js",
 				"background.js"
 			]
 		}
@@ -31,6 +31,7 @@
 	"web_accessible_resources": [
 		// "something.html",
 		// "havvy/select2.min.css"
+		"asd/selectize.css"
 	]
 	// "background":
 	// {
