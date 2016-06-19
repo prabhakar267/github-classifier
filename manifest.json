@@ -22,14 +22,15 @@
 			"matches": ["https://*/*"],
 			"js": [
 				"jquery.min.js",
-				// "script-main.js",
+				"havvy/selectize.js",
 				"background.js"
 			]
 		}
 	],
 	
 	"web_accessible_resources": [
-		"something.html"
+		"something.html",
+		"havvy/selectize.css"
 	]
 	// "background":
 	// {
