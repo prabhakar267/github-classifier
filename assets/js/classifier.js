@@ -2,7 +2,7 @@
 * @Author: prabhakar
 * @Date:   2016-06-18 15:24:57
 * @Last Modified by:   Prabhakar Gupta
-* @Last Modified time: 2016-06-20 02:29:01
+* @Last Modified time: 2016-06-20 02:44:26
 */
 
 select_language_tag_html = '<select id="all_languages" class="btn"><option value="" disabled selected>Select Language</option><option value="all"><strong>All Languages</strong></option></select>';
@@ -81,8 +81,7 @@ language_select_tag.change(function(){
 	selected_language_array.pop();
 	selected_language = selected_language_array.join(' ');
 
-	console.log(selected_language)
-	if(selected_language == 'all'){
+	if(selected_language == ''){
 		show_languages(selected_language, true);
 	} else {
 		show_languages(selected_language, false);
