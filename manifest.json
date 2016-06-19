@@ -1,8 +1,8 @@
 {
 	"manifest_version": 2,
 
-	"name": "Getting started example",
-	"description": "This extension shows a Google Image search result for the current page",
+	"name": "Github Classifier",
+	"description": "Extension to linguistically classify the repositories of a user on Github",
 	"version": "1.0",
 
 	"browser_action": {
@@ -14,27 +14,20 @@
 
 	"permissions": [
 		"activeTab"
-		// "https://ajax.googlepais.com/"
 	],
 	
 	"content_scripts": [
 		{
-			"matches": ["https://*/*"],
+			"matches": [
+				"https://*/*"
+			],
 			"js": [
-				"jquery.min.js",
-				"havvy/selectize.js",
-				"background.js"
+				"assets/js/jquery.min.js",
+				"assets/js/classifier.js"
+			],
+			"css": [
+				"assets/css/classifier.css"
 			]
 		}
-	],
-	
-	"web_accessible_resources": [
-		// "something.html",
-		// "havvy/select2.min.css"
-		"asd/selectize.css"
 	]
-	// "background":
-	// {
-	// "scripts": ["jquery.min.js"]
-	// }
 }
