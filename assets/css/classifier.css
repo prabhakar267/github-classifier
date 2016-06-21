@@ -2,7 +2,7 @@
 * @Author: prabhakar
 * @Date:   2016-06-20 02:32:49
 * @Last Modified by:   Prabhakar Gupta
-* @Last Modified time: 2016-06-22 00:31:49
+* @Last Modified time: 2016-06-22 02:30:49
 */
 
 #all_languages option{
@@ -11,8 +11,13 @@
 
 .disabled_div{
     pointer-events: none;
-
-    /* for "disabled" effect */
     opacity: 0.5;
-    /*background: #CCC;*/
+}
+
+#no_repo_item{
+    margin: 0;
+    text-align: center;
+    max-width: 100%;
+    color: #000;
+    font-size: 14px;
 }

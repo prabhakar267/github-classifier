@@ -2,43 +2,43 @@
 * @Author: prabhakar
 * @Date:   2016-06-18 15:24:57
 * @Last Modified by:   Prabhakar Gupta
-* @Last Modified time: 2016-06-22 02:09:09
+* @Last Modified time: 2016-06-22 02:30:41
 */
 
 var user_repo_languages = [];
 
-function show_languages(language, mode, github_filter){
-	if(mode){
-		show_all()
-	} else {
-		github_filter = github_filter.toLowerCase();
-		hide_all();
-		
-		if(github_filter != 'all'){
-			github_filter = github_filter.slice(0, -1);
-		}
+var select_language_tag_html = '<select id="all_languages" class="btn"></select>',
+	no_repo_html = '<div class="repo-list-item" id="no_repo_item" hidden><strong>Oh! Snap</strong><br>No repositories for these filters.</div>';
 
-		$('.repo-list-item').each(function(){
-			language_text = $(this).find("span[itemprop='programmingLanguage']").text();
-			language_text = language_text.trim().toLowerCase();
-
-			if(github_filter == 'all'){
-				github_flag = true;	
-			} else {
-				github_flag = $(this).hasClass(github_filter);
-			}
-			
-			if(language_text == language && github_flag){
-				$(this).fadeIn(100);
-			}
-		});
+function show_languages(language, github_filter){
+	github_filter = github_filter.toLowerCase();
+	hide_all();
+	
+	if(github_filter != 'all'){
+		github_filter = github_filter.slice(0, -1);
 	}
-}
 
-function show_all(){
+	var no_repo_flag = true;
 	$('.repo-list-item').each(function(){
-		$(this).fadeIn(100);
+		language_text = $(this).find("span[itemprop='programmingLanguage']").text();
+		language_text = language_text.trim().toLowerCase();
+
+		if(github_filter == 'all'){
+			github_flag = true;	
+		} else {
+			github_flag = $(this).hasClass(github_filter);
+		}
+		
+		if((language_text == language || language == '') && github_flag){
+			$(this).fadeIn(100);
+			no_repo_flag = false;
+		}
 	});
+
+	if(no_repo_flag)
+		$('body').find('#no_repo_item').fadeIn();
+	else
+		$('body').find('#no_repo_item').fadeOut();
 }
 
 function hide_all(){
@@ -103,7 +103,12 @@ function update_repo_stats(mode, language_selected=''){
 	});
 
 	select_language_tag.html('');
-	static_options_html = '<option value="all" disabled selected>Select Language</option><option value="all"><strong>All Languages</strong></option>';
+	
+	if(language_selected == '')
+		static_options_html = '<option value="all" disabled>Select Language</option><option value="all" selected><strong>All Languages</strong></option>';
+	else
+		static_options_html = '<option value="all" disabled selected>Select Language</option><option value="all"><strong>All Languages</strong></option>';
+
 	select_language_tag.append(static_options_html);
 
 	for(language in user_repo_languages){
@@ -138,25 +143,21 @@ function classify_repo(github_filter=All){
 	$('.repo-list').addClass('disabled_div');
 	setTimeout(function() {
 		selected_language = get_selected_language();
-		if(selected_language == ''){
-			show_languages(selected_language, true, github_filter);
-		} else {
-			show_languages(selected_language, false, github_filter);
-		}
+		show_languages(selected_language, github_filter);
 		$('.repo-list').removeClass('disabled_div');
 	}, 200);
 }
 
 
-var select_language_tag_html = '<select id="all_languages" class="btn"></select>',
-	github_navbar_div = $('.filter-bar');
+var github_navbar_div = $('.filter-bar');
 
 github_navbar_div.append(select_language_tag_html);
+$('.repo-list').append(no_repo_html);
 
 var select_language_tag = github_navbar_div.find('#all_languages');
 
 update_repo_info();
-update_repo_stats('all');
+update_repo_stats('all', null);
 
 select_language_tag.change(function(){
 	github_filter = $('body').find('.filter-selected').text();
