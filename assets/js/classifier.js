@@ -2,7 +2,7 @@
 * @Author: prabhakar
 * @Date:   2016-06-18 15:24:57
 * @Last Modified by:   Prabhakar Gupta
-* @Last Modified time: 2016-06-22 21:59:23
+* @Last Modified time: 2016-06-22 23:01:08
 */
 
 var user_repo_languages = [];
@@ -170,12 +170,14 @@ function classifier(){
 
 // check if user comes from some other page or not
 $('.tabnav-tab').on('click', function(){
-	var select_tab = $(this).attr('href');
-
-	select_tab = select_tab.substr(select_tab.length - 12); ;
-	if(select_tab.toLowerCase() == 'repositories'){
-		classifier();
-	}
+	var tab_clicked = $(this);
+	setTimeout(function() {
+		var select_tab = tab_clicked.attr('href');
+		select_tab = select_tab.substr(select_tab.length - 12); ;
+		if(select_tab.toLowerCase() == 'repositories'){
+			classifier();
+		}
+	}, 1000);
 });
 
 var select_tab = $('.tabnav-tabs').find('.selected').attr('href');
