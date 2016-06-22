@@ -4,29 +4,23 @@
 	"name": "Github Classifier",
 	"description": "Extension to linguistically classify the repositories of a user on Github",
 	"version": "1.0",
+	"author": "Prabhakar Gupta",
+	"homepage_url": "https://github.com/prabhakar267/github-classifier",
 
 	"browser_action": {
+		"default_title": "Github Classifier",
 		"default_icon": "icon.png"
-		// "default_popup": "popup.html",
-		// "default_title": "Click here!"
-		// "background_page": "background.html"
 	},
 
-	"permissions": [
-		"activeTab"
-	],
+	"permissions": ["activeTab"],
 	
 	"content_scripts": [
 		{
-			"matches": [
-				"https://github.com/*?tab=repositories"
-			],
+			"matches": ["https://github.com/*"],
+			"css": ["assets/css/classifier.css"],
 			"js": [
 				"assets/js/jquery.min.js",
 				"assets/js/classifier.js"
-			],
-			"css": [
-				"assets/css/classifier.css"
 			]
 		}
 	]
