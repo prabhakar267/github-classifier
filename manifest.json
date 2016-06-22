@@ -9,7 +9,7 @@
 
 	"browser_action": {
 		"default_title": "Github Classifier",
-		"default_icon": "icon.png"
+		"default_icon": "assets/images/icon.png"
 	},
 
 	"permissions": ["activeTab"],
