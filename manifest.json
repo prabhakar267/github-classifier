@@ -12,6 +12,12 @@
 		"default_icon": "assets/images/icon.png"
 	},
 
+	"icons": {
+		"16": "assets/images/icon.png",
+		"48": "assets/images/icon.png",
+		"128": "assets/images/icon.png"
+	},
+
 	"permissions": ["activeTab"],
 	
 	"content_scripts": [
