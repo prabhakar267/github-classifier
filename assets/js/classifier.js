@@ -2,7 +2,7 @@
 * @Author: prabhakar
 * @Date:   2016-06-18 15:24:57
 * @Last Modified by:   Prabhakar Gupta
-* @Last Modified time: 2016-06-22 23:01:08
+* @Last Modified time: 2016-06-27 01:07:45
 */
 
 var user_repo_languages = [];
@@ -10,6 +10,11 @@ var user_repo_languages = [];
 var select_language_tag_html = '<select id="all_languages" class="btn"></select>',
 	no_repo_html = '<div class="repo-list-item" id="no_repo_item" hidden><strong>Oh! Snap</strong><br>No repositories for these filters.</div>';
 
+/**
+ * Hides the repository divs according to the selected 'langauge' and 'github_filter'
+ * @param  string	language 		language selected in the tab
+ * @param  string	github_filter 	Identifies the selected option from all, forks, sources, mirrors
+ */
 function show_languages(language, github_filter){
 	github_filter = github_filter.toLowerCase();
 	hide_all();
@@ -41,12 +46,21 @@ function show_languages(language, github_filter){
 		$('body').find('#no_repo_item').fadeOut();
 }
 
+/**
+ * Hides all the repository divs
+ */
 function hide_all(){
 	$('.repo-list-item').each(function(){
 		$(this).fadeOut(100);
 	});
 }
 
+/**
+ * Increase the count of the number of repositories or add language to respective language object passed
+ * @param 	object 	obj 		language object having name of languages found so far and number of repositories
+ * @param 	string 	language
+ * @return 	object 				updated language object
+ */
 function add_language_count(obj, language){
 	if(obj.hasOwnProperty(language)){
 		obj[language] += 1;
@@ -56,6 +70,11 @@ function add_language_count(obj, language){
 	return obj;
 }
 
+/**
+ * Function to initially append and then update options having language name and count to the select tag 
+ * @param 	string 	mode 				Identifies the mode selected from all, forks, sources, mirrors
+ * @param 	string 	language_selected 	Identifies the language selected previously in the select tag
+ */
 function update_repo_stats(mode, language_selected=''){
 	user_repo_languages.sort(function(a, b) {
 		return b[mode] - a[mode];
@@ -85,6 +104,10 @@ function update_repo_stats(mode, language_selected=''){
 	}
 }
 
+/**
+ * Gets the language selected by the user in select tag
+ * @return 		string
+ */
 function get_selected_language(){
 	var language = $('body').find('#all_languages').val();
 	
@@ -98,6 +121,10 @@ function get_selected_language(){
 	return language;
 }
 
+/**
+ * Disables the repositories parent div and calls 'show_languages' function
+ * @param 	string 	github_filter 
+ */
 function classify_repo(github_filter=All){
 	$('.repo-list').addClass('disabled_div');
 	setTimeout(function() {
@@ -107,6 +134,11 @@ function classify_repo(github_filter=All){
 	}, 200);
 }
 
+/**
+ * Main function
+ * Called on the first page load, injects the select tag HTML, and counts the number of languages
+ * and their respective sources, forks and mirrors
+ */
 function classifier(){
 	var github_navbar_div = $('.filter-bar');
 
