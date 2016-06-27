@@ -1,9 +1,10 @@
 {
 	"manifest_version": 2,
 
-	"name": "Github Classifier",
-	"description": "Extension to linguistically classify the repositories of a user on Github",
-	"version": "1.0",
+	"name": "GitHub Classifier",
+	"description": "Simple tool to sort a user's GitHub repositories on the basis of project's language. Smoothly fits with the existing GitHub filters",
+	"short_name": "GHClassifier",
+	"version": "1.0.0.1",
 	"author": "Prabhakar Gupta",
 	"homepage_url": "https://github.com/prabhakar267/github-classifier",
 
